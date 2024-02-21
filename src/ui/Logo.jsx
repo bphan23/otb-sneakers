@@ -4,15 +4,10 @@ const StyledLogo = styled.div`
   text-align: center;
 `;
 
-const Img = styled.img`
-  height: 9.6rem;
-  width: auto;
-`;
-
 function Logo() {
   return (
     <StyledLogo>
-      <Img src="/logo-light.png" alt="Logo" />
+      <h1>OTB Sneakers</h1>
     </StyledLogo>
   );
 }
