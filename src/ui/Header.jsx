@@ -8,7 +8,12 @@ const StyledHeader = styled.header`
 `;
 
 function Header() {
-  return <StyledHeader>Out The Box Sneakers</StyledHeader>;
+  // let userLoggedIn = false;
+
+  // if logged in -> Hi user
+  // otherwise -> Please Login
+
+  return <StyledHeader>Please Login</StyledHeader>;
 }
 
 export default Header;

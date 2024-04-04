@@ -7,6 +7,8 @@ import Support from "./pages/Support";
 import Orders from "./pages/Orders";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Login from "./pages/Login";
+import CreateAccount from "./pages/CreateAccount";
 
 // Sets up cache behind the scenes
 // data will automatically become stale --> so data is automatically fetched
@@ -34,6 +36,8 @@ function App() {
             <Route path="inventory" element={<Inventory />} />
             <Route path="support" element={<Support />} />
             {/* add more routes */}
+            <Route path="login" element={<Login />} />
+            <Route path="create-account" element={<CreateAccount />} />
           </Route>
         </Routes>
       </BrowserRouter>
