@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Logout from "../features/authentication/Logout";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -13,7 +14,11 @@ function Header() {
   // if logged in -> Hi user
   // otherwise -> Please Login
 
-  return <StyledHeader>Please Login</StyledHeader>;
+  return (
+    <StyledHeader>
+      <Logout />
+    </StyledHeader>
+  );
 }
 
 export default Header;

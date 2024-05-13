@@ -1,5 +1,6 @@
 import supabase from "./supabase";
 
+// get all inventory
 export async function getInventory() {
   const { data, error } = await supabase.from("inventory").select("*");
 

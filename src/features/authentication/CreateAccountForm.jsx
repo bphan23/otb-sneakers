@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { useState } from "react";
 import styled from "styled-components";
 
 const CreateAccountContainer = styled.div`
@@ -6,24 +7,12 @@ const CreateAccountContainer = styled.div`
   flex-direction: column;
 `;
 
-const CreateHeader = styled.h1`
-  margin-bottom: 1.5rem;
-  font-size: 3rem;
-  font-weight: 600;
-`;
-
 const CreateForm = styled.form`
-  width: 50%;
-  height: 50%;
   border-radius: 1rem;
   border: 1px solid var(--color-grey-100);
   padding: 2rem;
   font-size: 1.6rem;
   background-color: white;
-`;
-
-const CreateText = styled.p`
-  margin-bottom: 1.5rem;
 `;
 
 const CreateInputDiv = styled.div`
@@ -46,11 +35,13 @@ const CreateButtonDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
+  margin-top: 1.5rem;
 `;
 
 const SubmitInputButton = styled.input`
   cursor: pointer;
   background-color: var(--color-brand-600);
+  width: 100%;
   color: white;
   border: none;
   border-radius: 0.375rem;
@@ -78,27 +69,32 @@ const LoginLink = styled.a`
   }
 `;
 
-function CreateAccount() {
+function CreateAccountForm() {
+  // state
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleSubmit() {}
+
   return (
     <CreateAccountContainer>
-      <CreateHeader>Create New Account</CreateHeader>
-
-      <CreateText>Please create a new account</CreateText>
-
-      <CreateForm>
-        <CreateInputDiv>
-          <CreateInputLabel>Name</CreateInputLabel>
-          <CreateInput type="text" placeholder="Enter Name" />
-        </CreateInputDiv>
-
+      <CreateForm onSubmit={handleSubmit}>
         <CreateInputDiv>
           <CreateInputLabel>Email</CreateInputLabel>
-          <CreateInput type="text" placeholder="Enter Email" />
+          <CreateInput
+            type="text"
+            placeholder="Enter Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </CreateInputDiv>
 
         <CreateInputDiv>
           <CreateInputLabel>Password</CreateInputLabel>
-          <CreateInput type="text" placeholder="Enter Password" />
+          <CreateInput
+            type="text"
+            placeholder="Enter Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </CreateInputDiv>
 
         <LoginDiv>
@@ -107,11 +103,14 @@ function CreateAccount() {
 
         {/* create account button */}
         <CreateButtonDiv>
-          <SubmitInputButton type="submit" value="Submit"></SubmitInputButton>
+          <SubmitInputButton
+            type="submit"
+            value="Create Account"
+          ></SubmitInputButton>
         </CreateButtonDiv>
       </CreateForm>
     </CreateAccountContainer>
   );
 }
 
-export default CreateAccount;
+export default CreateAccountForm;

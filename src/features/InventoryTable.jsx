@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-vars */
-import { useQuery } from "@tanstack/react-query";
-import { getInventory } from "../services/apiInventory";
-import InventoryItem from "./InventoryItem";
+/* eslint-disable react/prop-types */
+import InventoryItem from "./inventory/InventoryItem";
 import styled from "styled-components";
 
 const Inventory = styled.div`
@@ -11,24 +9,17 @@ const Inventory = styled.div`
   grid-gap: 5rem;
 `;
 
-function InventoryTable() {
-  const {
-    isLoading,
-    data: allItems,
-    error,
-  } = useQuery({
-    queryKey: ["inventory"],
-    queryFn: getInventory,
-  });
-
-  console.log(allItems);
-  console.log(isLoading, error);
-
-  if (isLoading) return <p>Loading...</p>;
+function InventoryTable({ allData, inventoryData }) {
+  let updatedData;
+  if (inventoryData !== undefined) {
+    updatedData = inventoryData;
+  } else {
+    updatedData = allData;
+  }
 
   return (
     <Inventory>
-      {allItems.map((item) => (
+      {updatedData.map((item) => (
         <InventoryItem item={item} key={item.id} />
       ))}
     </Inventory>

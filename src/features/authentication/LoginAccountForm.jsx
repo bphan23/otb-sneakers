@@ -1,29 +1,19 @@
 /* eslint-disable no-unused-vars */
+import { useState } from "react";
 import styled from "styled-components";
+import { useLogin } from "./useLogin";
 
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const LoginHeader = styled.h1`
-  margin-bottom: 1.5rem;
-  font-size: 3rem;
-  font-weight: 600;
-`;
-
 const LoginForm = styled.form`
-  width: 50%;
-  height: 50%;
   border-radius: 10px;
   border: 1px solid var(--color-grey-100);
   padding: 2rem;
   font-size: 1.6rem;
   background-color: white;
-`;
-
-const LoginText = styled.p`
-  margin-bottom: 1.5rem;
 `;
 
 const LoginInputDiv = styled.div`
@@ -45,12 +35,14 @@ const LoginInput = styled.input`
 const LoginButtonDiv = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: center;
+  margin-top: 1.5rem;
 `;
 
 const SubmitInputButton = styled.input`
   cursor: pointer;
   background-color: var(--color-brand-600);
+  width: 100%;
   color: white;
   border: none;
   border-radius: 0.375rem;
@@ -78,23 +70,58 @@ const CreateAccountLink = styled.a`
   }
 `;
 
-function Login() {
+function LoginAccountForm() {
+  // state
+  const [email, setEmail] = useState("bryan@example.com");
+  const [password, setPassword] = useState("pass206");
+
+  const { login, isLoading } = useLogin();
+
+  function handleSubmit(e) {
+    // since form - prevent default
+    e.preventDefault();
+
+    // if email or password doesn't exist - just return
+    if (!email || !password) return;
+
+    // otherwise - email and password exists so login
+    login(
+      {
+        email,
+        password,
+      },
+      {
+        onSettled: () => {
+          setEmail("");
+          setPassword("");
+        },
+      }
+    );
+  }
   return (
     <LoginContainer>
-      <LoginHeader>Login</LoginHeader>
-
-      <LoginText>Please login if you have an existing account</LoginText>
-
-      <LoginForm>
+      <LoginForm onSubmit={handleSubmit}>
         {/* login email */}
         <LoginInputDiv>
           <LoginInputLabel>Email</LoginInputLabel>
-          <LoginInput type="text" placeholder="Enter Email" />
+          <LoginInput
+            type="text"
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={isLoading}
+          />
         </LoginInputDiv>
         {/* login password */}
         <LoginInputDiv>
           <LoginInputLabel>Password</LoginInputLabel>
-          <LoginInput type="text" placeholder="Enter Password" />
+          <LoginInput
+            type="text"
+            placeholder="Enter Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            disabled={isLoading}
+          />
         </LoginInputDiv>
 
         <CreateDiv>
@@ -105,11 +132,15 @@ function Login() {
 
         {/* login button */}
         <LoginButtonDiv>
-          <SubmitInputButton type="submit" value="Submit" />
+          <SubmitInputButton
+            type="submit"
+            value={!isLoading ? "Log In" : "Logging In..."}
+            disabled={isLoading}
+          />
         </LoginButtonDiv>
       </LoginForm>
     </LoginContainer>
   );
 }
 
-export default Login;
+export default LoginAccountForm;

@@ -25,7 +25,6 @@ const SupportForm = styled.form`
 `;
 
 const SupportText = styled.p`
-  text-align: center;
   margin-bottom: 1.5rem;
 `;
 
@@ -77,7 +76,7 @@ const SubmitInputButton = styled.input`
   }
 `;
 
-function Support() {
+function SupportPage() {
   const form = useRef();
   const [nameInput, setName] = useState("");
   const [emailInput, setEmail] = useState("");
@@ -167,4 +166,4 @@ function Support() {
   );
 }
 
-export default Support;
+export default SupportPage;

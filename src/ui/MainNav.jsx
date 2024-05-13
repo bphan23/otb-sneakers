@@ -65,12 +65,12 @@ function MainNav() {
             <span>Home</span>
           </StyledNavLink>
         </li>
-        <li>
+        {/* <li>
           <StyledNavLink to="/orders">
             <CiReceipt />
             <span>Orders</span>
           </StyledNavLink>
-        </li>
+        </li> */}
         <li>
           <StyledNavLink to="/inventory">
             <PiSneakerLight />

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-import { formatCurrency } from "../utils/helpers";
+import { formatCurrency } from "../../utils/helpers";
 
 const StyledInventoryItem = styled.div`
   display: grid;
@@ -51,6 +51,19 @@ const ItemButton = styled.button`
   grid-column: 2 / 3;
   grid-row: 4 / 5;
   align-self: end;
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  background-color: var(--color-grey-600);
+
+  &:hover {
+    background-color: var(--color-brand-600);
+  }
 `;
 
 function InventoryItem({ item }) {
