@@ -6,9 +6,12 @@ import { useLogin } from "./useLogin";
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const LoginForm = styled.form`
+  align-content: center;
+  min-width: 50vw;
   border-radius: 10px;
   border: 1px solid var(--color-grey-100);
   padding: 2rem;
@@ -21,15 +24,16 @@ const LoginInputDiv = styled.div`
 `;
 
 const LoginInputLabel = styled.label`
-  font-weight: 400;
+  font-weight: 500;
 `;
 
 const LoginInput = styled.input`
   width: 100%;
-  padding: 0.5rem;
-  outline: none;
-  border-radius: 0.5rem;
-  border: 1px solid rgb(220, 220, 220);
+  border: 1px solid var(--color-grey-300);
+  background-color: var(--color-grey-0);
+  border-radius: var(--border-radius-sm);
+  padding: 0.8rem 1.2rem;
+  box-shadow: var(--shadow-sm);
 `;
 
 const LoginButtonDiv = styled.div`
@@ -40,16 +44,15 @@ const LoginButtonDiv = styled.div`
 `;
 
 const SubmitInputButton = styled.input`
-  cursor: pointer;
-  background-color: var(--color-brand-600);
   width: 100%;
-  color: white;
+  font-size: 1.4rem;
+  padding: 1.2rem 1.6rem;
+  font-weight: 500;
   border: none;
-  border-radius: 0.375rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-brand-50);
+  background-color: var(--color-brand-600);
 
   &:hover {
     background-color: var(--color-brand-700);
@@ -64,6 +67,7 @@ const CreateDiv = styled.div`
 
 const CreateAccountLink = styled.a`
   color: var(--color-brand-600);
+  font-weight: 500;
 
   &:hover {
     text-decoration: underline;
@@ -72,8 +76,8 @@ const CreateAccountLink = styled.a`
 
 function LoginAccountForm() {
   // state
-  const [email, setEmail] = useState("bryan@example.com");
-  const [password, setPassword] = useState("pass206");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("password1");
 
   const { login, isLoading } = useLogin();
 
@@ -105,7 +109,7 @@ function LoginAccountForm() {
         <LoginInputDiv>
           <LoginInputLabel>Email</LoginInputLabel>
           <LoginInput
-            type="text"
+            type="email"
             placeholder="Enter Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -116,7 +120,7 @@ function LoginAccountForm() {
         <LoginInputDiv>
           <LoginInputLabel>Password</LoginInputLabel>
           <LoginInput
-            type="text"
+            type="password"
             placeholder="Enter Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

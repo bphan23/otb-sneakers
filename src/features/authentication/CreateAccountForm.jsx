@@ -1,13 +1,18 @@
-/* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import FormRow from "../../ui/FormRow";
+import { useSignup } from "./useSignup";
+import Button from "../../ui/Button";
 
 const CreateAccountContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const CreateForm = styled.form`
+  align-content: center;
+  min-width: 50vw;
   border-radius: 1rem;
   border: 1px solid var(--color-grey-100);
   padding: 2rem;
@@ -15,44 +20,14 @@ const CreateForm = styled.form`
   background-color: white;
 `;
 
-const CreateInputDiv = styled.div`
-  margin-bottom: 1.5rem;
-`;
-
-const CreateInputLabel = styled.label`
-  font-weight: 400;
-`;
-
 const CreateInput = styled.input`
   width: 100%;
-  padding: 0.5rem;
-  outline: none;
-  border-radius: 0.5rem;
-  border: 1px solid rgb(220, 220, 220);
-`;
-
-const CreateButtonDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  margin-top: 1.5rem;
-`;
-
-const SubmitInputButton = styled.input`
-  cursor: pointer;
-  background-color: var(--color-brand-600);
-  width: 100%;
-  color: white;
-  border: none;
-  border-radius: 0.375rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-
-  &:hover {
-    background-color: var(--color-brand-700);
-  }
+  border: 1px solid var(--color-grey-300);
+  background-color: var(--color-grey-0);
+  border-radius: var(--border-radius-sm);
+  padding: 0.8rem 1.2rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1.5rem;
 `;
 
 const LoginDiv = styled.div`
@@ -63,6 +38,7 @@ const LoginDiv = styled.div`
 
 const LoginLink = styled.a`
   color: var(--color-brand-600);
+  font-weight: 500;
 
   &:hover {
     text-decoration: underline;
@@ -70,44 +46,99 @@ const LoginLink = styled.a`
 `;
 
 function CreateAccountForm() {
-  // state
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { signup, isLoading } = useSignup();
+  const { register, formState, getValues, handleSubmit, reset } = useForm();
+  const { errors } = formState;
 
-  function handleSubmit() {}
+  function onSubmit({ name, email, password }) {
+    signup(
+      { name, email, password },
+      {
+        onSettled: () => reset(),
+      }
+    );
+  }
 
   return (
     <CreateAccountContainer>
-      <CreateForm onSubmit={handleSubmit}>
-        <CreateInputDiv>
-          <CreateInputLabel>Email</CreateInputLabel>
-          <CreateInput
-            type="text"
-            placeholder="Enter Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </CreateInputDiv>
+      <CreateForm onSubmit={handleSubmit(onSubmit)}>
+        <FormRow label={"Name"} error={errors?.name?.message}></FormRow>
+        <CreateInput
+          type="text"
+          id="name"
+          disabled={isLoading}
+          placeholder="Enter Name"
+          {...register("name", { required: "This field is required" })}
+        />
 
-        <CreateInputDiv>
-          <CreateInputLabel>Password</CreateInputLabel>
-          <CreateInput
-            type="text"
-            placeholder="Enter Password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </CreateInputDiv>
+        <FormRow label={"Email"} error={errors?.email?.message} />
+        <CreateInput
+          type="email"
+          id="email"
+          disabled={isLoading}
+          placeholder="Enter Email"
+          {...register("email", {
+            required: "This field is required",
+            pattern: {
+              value: /\S+@\S+\.\S+/,
+              message: "Please provide a valid email address",
+            },
+          })}
+        />
+
+        <FormRow
+          label={"Password (min 8 characters)"}
+          error={errors?.password?.message}
+        />
+        <CreateInput
+          type="password"
+          id="password"
+          disabled={isLoading}
+          placeholder="Enter Password"
+          {...register("password", {
+            required: "This field is required",
+            minLength: {
+              value: 8,
+              message: "Password needs a minimum of 8 characters",
+            },
+          })}
+        />
+
+        <FormRow
+          label={"Repeat password"}
+          error={errors?.passwordConfirm?.message}
+        />
+        <CreateInput
+          type="password"
+          id="passwordConfirm"
+          disabled={isLoading}
+          placeholder="Enter Password Again"
+          {...register("passwordConfirm", {
+            required: "This field is required",
+            validate: (value) =>
+              value === getValues().password ||
+              "Passwords don't match, please try again",
+          })}
+        />
 
         <LoginDiv>
           <LoginLink href="/login">Login to existing account</LoginLink>
         </LoginDiv>
 
         {/* create account button */}
-        <CreateButtonDiv>
-          <SubmitInputButton
-            type="submit"
-            value="Create Account"
-          ></SubmitInputButton>
-        </CreateButtonDiv>
+        <FormRow>
+          <Button
+            type="reset"
+            variation="secondary"
+            disabled={isLoading}
+            onClick={reset}
+          >
+            Cancel
+          </Button>
+          <Button disabled={isLoading} type="submit">
+            Create Account
+          </Button>
+        </FormRow>
       </CreateForm>
     </CreateAccountContainer>
   );

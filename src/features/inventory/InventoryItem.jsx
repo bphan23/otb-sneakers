@@ -51,14 +51,13 @@ const ItemButton = styled.button`
   grid-column: 2 / 3;
   grid-row: 4 / 5;
   align-self: end;
-  cursor: pointer;
-  color: white;
+  font-size: 1.4rem;
+  padding: 0.5rem 0.5rem;
   border: none;
-  border-radius: 0.375rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  font-weight: 500;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-sm);
+  color: white;
   background-color: var(--color-grey-600);
 
   &:hover {

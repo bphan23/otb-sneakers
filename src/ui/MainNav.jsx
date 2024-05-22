@@ -83,6 +83,12 @@ function MainNav() {
             <span>Support</span>
           </StyledNavLink>
         </li>
+        <li>
+          <StyledNavLink to="/account">
+            <HiOutlineCog6Tooth />
+            <span>Account</span>
+          </StyledNavLink>
+        </li>
       </NavList>
     </nav>
   );

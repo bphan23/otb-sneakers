@@ -2,6 +2,8 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 import emailjs from "@emailjs/browser";
+import Button from "../ui/Button";
+import FormRow from "../ui/FormRow";
 
 const SupportContainer = styled.div`
   display: flex;
@@ -33,50 +35,30 @@ const SupportUserInputsDiv = styled.div`
 `;
 
 const SupportUserInputsLabel = styled.label`
-  font-weight: 400;
+  font-weight: 500;
 `;
 
 const SupportInput = styled.input`
   width: 100%;
-  padding: 0.5rem;
-  outline: none;
-  border-radius: 0.5rem;
-  border: 1px solid rgb(220, 220, 220);
+  border: 1px solid var(--color-grey-300);
+  background-color: var(--color-grey-0);
+  border-radius: var(--border-radius-sm);
+  padding: 0.8rem 1.2rem;
+  box-shadow: var(--shadow-sm);
 `;
 
 const SupportTextArea = styled.textarea`
   width: 100%;
   max-height: 100px;
   min-height: 100px;
-  padding: 0.5rem;
-  outline: none;
-  border-radius: 0.5rem;
-  border: 1px solid rgb(220, 220, 220);
+  border: 1px solid var(--color-grey-300);
+  background-color: var(--color-grey-0);
+  border-radius: var(--border-radius-sm);
+  padding: 0.8rem 1.2rem;
+  box-shadow: var(--shadow-sm);
 `;
 
-const SupportButtonDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-`;
-
-const SubmitInputButton = styled.input`
-  cursor: pointer;
-  background-color: var(--color-brand-600);
-  color: white;
-  border: none;
-  border-radius: 0.375rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-
-  &:hover {
-    background-color: var(--color-brand-700);
-  }
-`;
-
-function SupportPage() {
+function Support() {
   const form = useRef();
   const [nameInput, setName] = useState("");
   const [emailInput, setEmail] = useState("");
@@ -158,12 +140,15 @@ function SupportPage() {
         </SupportUserInputsDiv>
 
         {/* Support Form Button */}
-        <SupportButtonDiv>
-          <SubmitInputButton type="submit" value="Submit" />
-        </SupportButtonDiv>
+        <FormRow>
+          <Button type="reset" variation="secondary">
+            Cancel
+          </Button>
+          <Button type="submit">Submit</Button>
+        </FormRow>
       </SupportForm>
     </SupportContainer>
   );
 }
 
-export default SupportPage;
+export default Support;
