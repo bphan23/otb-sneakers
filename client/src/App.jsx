@@ -4,7 +4,6 @@ import Dashboard from "./pages/Dashboard";
 import AppLayout from "./ui/AppLayout";
 import Inventory from "./pages/Inventory";
 import Support from "./pages/Support";
-import Orders from "./pages/Orders";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
@@ -14,6 +13,7 @@ import CreateAccountPage from "./pages/CreateAccountPage";
 import PreHomePage from "./pages/PreHomePage";
 import Account from "./pages/Account";
 import CartCheckout from "./pages/CartCheckout";
+import Success from "./pages/Success";
 
 // Sets up cache behind the scenes
 // data will automatically become stale --> so data is automatically fetched
@@ -46,8 +46,10 @@ function App() {
             <Route path="support" element={<Support />} />
             <Route path="account" element={<Account />} />
             <Route path="checkout" element={<CartCheckout />} />
+            <Route path="checkout-success" element={<Success />} />
+
             {/* add more routes */}
-            <Route path="orders" element={<Orders />} />
+            {/* <Route path="orders" element={<Orders />} /> */}
           </Route>
 
           <Route index element={<Navigate replace to="home" />} />

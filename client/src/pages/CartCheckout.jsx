@@ -50,14 +50,29 @@ function CartCheckout() {
     });
   }
 
-  async function handleCheckout() {
-    // const stripe = await loadStripe(
-    //   "pk_test_51NouWFLzGhn41jsnGRNOU0Tw4g33tw79NC0EBuKY8z16E9Jscuo2QlsmRQS83PI6aY6kugWXfPjSnafaHD1A0hBI006u49CPwP"
-    // );
+  // Go to stripe -> Calculate correct total price and all items when checking out from stripe
+  const handleCheckout = () => {
+    fetch("http://localhost:3000/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: cart,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) return res.json();
+        return res.json().then((json) => Promise.reject(json));
+      })
+      .then(({ url }) => {
+        window.location = url;
+      })
+      .catch((e) => {
+        console.error(e.error);
+      });
+  };
 
-    // Go to stripe -> Calculate correct total price and all items when checking oout from stripe
-    console.log("Go to stripe and pay");
-  }
   return (
     <>
       <CartCheckoutHeader>Cart Checkout</CartCheckoutHeader>
@@ -90,7 +105,9 @@ function CartCheckout() {
           >
             Clear
           </Button>
-          <Button onClick={handleCheckout}>Checkout</Button>
+          <Button onClick={handleCheckout} disabled={!itemsInCart}>
+            Checkout
+          </Button>
         </FormRow>
       </StyledCartCheckout>
     </>
