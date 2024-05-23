@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FormRow from "../ui/FormRow";
 import Button from "../ui/Button";
 import { useUser } from "../features/authentication/useUser";
-import { useUpdateCart } from "../features/authentication/useUpdateCart";
+import { useClearCart } from "../features/authentication/useClearCart";
 
 const StyledCartCheckout = styled.div`
   background-color: white;
@@ -40,21 +40,23 @@ function CartCheckout() {
   }
 
   let totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
-  const { updateUserCart, isUpdating } = useUpdateCart();
+  const { clearUserCart, isUpdating } = useClearCart();
 
   function handleClearCart() {
     // clear all items from cart
     cart = [];
-    updateUserCart({
+    clearUserCart({
       cart,
     });
-    console.log("cleared cart");
   }
 
-  function handleCheckout() {
-    // Go to stripe
-    // Calculate correct total price and all items when checking oout from stripe
-    console.log("Go to stripe");
+  async function handleCheckout() {
+    // const stripe = await loadStripe(
+    //   "pk_test_51NouWFLzGhn41jsnGRNOU0Tw4g33tw79NC0EBuKY8z16E9Jscuo2QlsmRQS83PI6aY6kugWXfPjSnafaHD1A0hBI006u49CPwP"
+    // );
+
+    // Go to stripe -> Calculate correct total price and all items when checking oout from stripe
+    console.log("Go to stripe and pay");
   }
   return (
     <>
@@ -81,10 +83,14 @@ function CartCheckout() {
 
         {/* Buttons */}
         <FormRow>
-          <Button variation="secondary" onClick={handleClearCart}>
+          <Button
+            variation="secondary"
+            onClick={handleClearCart}
+            disabled={!itemsInCart}
+          >
             Clear
           </Button>
-          <Button>Checkout</Button>
+          <Button onClick={handleCheckout}>Checkout</Button>
         </FormRow>
       </StyledCartCheckout>
     </>

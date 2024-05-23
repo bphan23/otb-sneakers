@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import Logout from "../features/authentication/Logout";
 import { HiOutlineUser } from "react-icons/hi2";
@@ -37,7 +36,6 @@ function HeaderMenu() {
   const { user } = useUser();
   const { cart } = user.user_metadata;
 
-  if (!cart.length) return;
   return (
     <StyledHeaderMenu>
       <li>

@@ -51,7 +51,7 @@ const Price = styled.div`
   color: var(--color-brand-500);
 `;
 
-const ItemButton = styled.button`
+const AddItemButton = styled.button`
   grid-column: 2 / 3;
   grid-row: 4 / 5;
   align-self: end;
@@ -69,30 +69,54 @@ const ItemButton = styled.button`
   }
 `;
 
+const AddedItemButton = styled.button`
+  grid-column: 2 / 3;
+  grid-row: 4 / 5;
+  align-self: end;
+  font-size: 1.4rem;
+  padding: 0.5rem 0.5rem;
+  border: none;
+  font-weight: 500;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-sm);
+  color: white;
+  background-color: var(--color-brand-600);
+`;
+
 function InventoryItem({ item }) {
-  const { id, name, size, price, image, inCart } = item;
+  const { id, name, size, price, image } = item;
   const { user } = useUser();
   const { cart } = user.user_metadata;
 
   const { updateUserCart, isUpdating } = useUpdateCart();
+  // check to see if item is currently added into cart
+  let currentlyInCart = false;
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].name === name && cart[i].inCart === true) {
+      currentlyInCart = true;
+    }
+  }
+
+  const [inUserCart, setInCart] = useState(currentlyInCart);
   const [currentCart, setCart] = useState(cart);
 
+  // add to user metadata cart -> have data persist
   function handleAddToCart() {
-    // make sure item has inCart boolean -> change add button to remove
-    // make sure item has isSold boolean -> removes item from current inventory so users can't buy twice
-    // isSold -> false,
-
     const addedItem = {
       id,
       name,
       size,
       price,
+      image,
       inCart: true,
     };
 
-    // add to user metadata cart -> have data persist
+    // update state
+    setInCart(true);
     cart.push(addedItem);
     setCart(cart);
+
+    // update user cart
     updateUserCart({
       cart,
     });
@@ -104,9 +128,13 @@ function InventoryItem({ item }) {
       <Img src={image} alt={name} />
       <Price>{formatCurrency(price)}</Price>
       <Size>Size {size}</Size>
-      <ItemButton onClick={handleAddToCart} disabled={inCart}>
-        {inCart !== true ? "Add" : "Added"}
-      </ItemButton>
+      {inUserCart !== true ? (
+        <AddItemButton onClick={handleAddToCart} disabled={isUpdating}>
+          Add
+        </AddItemButton>
+      ) : (
+        <AddedItemButton disabled={inUserCart}>Added</AddedItemButton>
+      )}
     </StyledInventoryItem>
   );
 }
