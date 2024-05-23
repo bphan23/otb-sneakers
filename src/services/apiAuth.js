@@ -8,6 +8,7 @@ export async function signup({ name, email, password }) {
       data: {
         name,
         avatar: "",
+        cart: [],
       },
     },
   });
@@ -32,7 +33,6 @@ export async function getCurrentUser() {
   if (!session.session) return null;
 
   const { data, error } = await supabase.auth.getUser();
-  console.log(data);
 
   if (error) throw new Error(error.message);
 
@@ -71,4 +71,15 @@ export async function updateCurrentUser({ name, avatar }) {
 
   if (error2) throw new Error(error2.message);
   return updatedUser;
+}
+
+// update cart
+export async function updateCart({ cart }) {
+  let updateData;
+  if (cart) updateData = { data: { cart } };
+  const { data, error } = await supabase.auth.updateUser(updateData);
+
+  if (error) throw new Error(error.message);
+  console.log(data);
+  return data;
 }

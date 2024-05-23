@@ -50,18 +50,17 @@ function Dashboard() {
       <ContextDiv>
         <HomeSubHeader>Our Mission</HomeSubHeader>
         <MissionText>
-          At Out The Box Sneakers, we are dedicated to providing sneaker
-          enthusiasts with a trusted platform to discover, acquire, and enjoy
-          the most coveted and authentic footwear on the market. Our commitment
-          to authenticity, quality, and customer satisfaction drives every
-          aspect of our business. We strive to curate a diverse selection of
-          highly sought-after sneakers, ensuring that our customers can always
-          find the perfect pair to express their individual style and passion
-          for footwear culture. With a focus on integrity and excellence, we aim
-          to create an unparalleled shopping experience that celebrates the
-          excitement and creativity of sneaker culture while fostering a
-          community built on trust and appreciation for the art of sneaker
-          design.
+          Here at <b>Out The Box Sneakers</b>, we are dedicated to providing
+          customers with a trusted platform to purchase the most coveted
+          sneakers on the market. Our commitment to authenticity, quality, and
+          customer satisfaction drives every aspect of our business. We strive
+          to curate a diverse selection of highly sought-after sneakers,
+          ensuring that our customers can always find the perfect pair to
+          express their individual style and passion for footwear culture. With
+          a focus on integrity and excellence, we aim to create an unparalleled
+          shopping experience that celebrates the excitement and creativity of
+          sneaker culture while fostering a community built on trust and
+          appreciation for the art of sneaker design.
         </MissionText>
       </ContextDiv>
 

@@ -13,6 +13,7 @@ import LoginPage from "./pages/LoginPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import PreHomePage from "./pages/PreHomePage";
 import Account from "./pages/Account";
+import CartCheckout from "./pages/CartCheckout";
 
 // Sets up cache behind the scenes
 // data will automatically become stale --> so data is automatically fetched
@@ -44,6 +45,7 @@ function App() {
             <Route path="inventory" element={<Inventory />} />
             <Route path="support" element={<Support />} />
             <Route path="account" element={<Account />} />
+            <Route path="checkout" element={<CartCheckout />} />
             {/* add more routes */}
             <Route path="orders" element={<Orders />} />
           </Route>

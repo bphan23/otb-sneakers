@@ -1,6 +1,10 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
+import { useUser } from "../authentication/useUser";
+import { useState } from "react";
+import { useUpdateCart } from "../authentication/useUpdateCart";
 
 const StyledInventoryItem = styled.div`
   display: grid;
@@ -66,14 +70,43 @@ const ItemButton = styled.button`
 `;
 
 function InventoryItem({ item }) {
-  const { name, size, price, image } = item;
+  const { id, name, size, price, image, inCart } = item;
+  const { user } = useUser();
+  const { cart } = user.user_metadata;
+
+  const { updateUserCart, isUpdating } = useUpdateCart();
+  const [currentCart, setCart] = useState(cart);
+
+  function handleAddToCart() {
+    // make sure item has inCart boolean -> change add button to remove
+    // make sure item has isSold boolean -> removes item from current inventory so users can't buy twice
+    // isSold -> false,
+
+    const addedItem = {
+      id,
+      name,
+      size,
+      price,
+      inCart: true,
+    };
+
+    // add to user metadata cart -> have data persist
+    cart.push(addedItem);
+    setCart(cart);
+    updateUserCart({
+      cart,
+    });
+  }
+
   return (
     <StyledInventoryItem>
       <ItemName>{name}</ItemName>
       <Img src={image} alt={name} />
       <Price>{formatCurrency(price)}</Price>
       <Size>Size {size}</Size>
-      <ItemButton>Add</ItemButton>
+      <ItemButton onClick={handleAddToCart} disabled={inCart}>
+        {inCart !== true ? "Add" : "Added"}
+      </ItemButton>
     </StyledInventoryItem>
   );
 }

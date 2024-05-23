@@ -2,12 +2,10 @@ import { HiArrowRightOnRectangle } from "react-icons/hi2";
 import { useLogout } from "./useLogout";
 import styled from "styled-components";
 
-const StyledLogoutDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
 const StyledButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   padding: 0.6rem;
@@ -29,11 +27,12 @@ function Logout() {
   const { logout, isLoading } = useLogout();
 
   return (
-    <StyledLogoutDiv>
+    <>
       <StyledButton disabled={isLoading} onClick={logout}>
+        Sign out
         <HiArrowRightOnRectangle />
       </StyledButton>
-    </StyledLogoutDiv>
+    </>
   );
 }
 
