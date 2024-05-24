@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useUser } from "../features/authentication/useUser";
 import { useClearCart } from "../features/authentication/useClearCart";
 import { useEffect, useState } from "react";
+import { useUpdateInventory } from "../features/inventory/useUpdateInventory";
 
 const StyledSuccessCheckout = styled.div`
   background-color: white;
@@ -36,11 +37,19 @@ function Success() {
   const [purchasedItems, setPurchasedItems] = useState(cart);
   let totalPrice = purchasedItems.reduce((sum, item) => sum + item.price, 0);
 
-  const { clearUserCart, isUpdating } = useClearCart();
+  const { updateInventoryData, isUpdating } = useUpdateInventory();
+  const { clearUserCart, isClearing } = useClearCart();
 
-  // FIX: want to run only once
+  console.log(purchasedItems);
+  // mark all items in cart as sold
+  for (let i = 0; i < purchasedItems.length; i++) {
+    console.log(purchasedItems[i].id);
+    // updateInventoryData(purchasedItems[i].id);
+  }
+
   cart = [];
   useEffect(() => {
+    // clear current cart on load
     clearUserCart({
       cart,
     });

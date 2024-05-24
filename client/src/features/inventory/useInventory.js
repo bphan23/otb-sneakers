@@ -7,7 +7,9 @@ export function useInventory() {
     data: allItems,
     error,
   } = useQuery({
+    // uniquely identify data
     queryKey: ["inventory"],
+    // function responsible for querying
     queryFn: getInventory,
   });
 

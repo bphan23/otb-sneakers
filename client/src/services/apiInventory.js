@@ -13,10 +13,18 @@ export async function getInventory() {
   return data;
 }
 
-// update inventory when adding item to cart - match id
-// export async function updateInventory({ id }) {
-//   const { error } = await supabase
-//     .from("inventory")
-//     .update({ inCart: true })
-//     .eq("id", id);
-// }
+// update inventory data -> mark item as isSold
+export async function updateInventory({ id }) {
+  // update single item
+  const { data, error } = await supabase
+    .from("inventory")
+    .update({ isSold: true })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Inventory could not be updated");
+  }
+}

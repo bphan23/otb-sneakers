@@ -5,15 +5,16 @@ import toast from "react-hot-toast";
 export function useClearCart() {
   const queryClient = useQueryClient();
 
-  const { mutate: clearUserCart, isLoading: isUpdating } = useMutation({
+  const { mutate: clearUserCart, isLoading: isClearing } = useMutation({
     mutationFn: updateCart,
     onSuccess: ({ user }) => {
-      // FIX: want to display only one at a time
-      // toast.success("All items successfully cleared from cart");
+      toast.success("All items successfully cleared from cart", {
+        id: "cleared",
+      });
       queryClient.setQueryData(["user"], user);
     },
     onError: (err) => toast.error(err.message),
   });
 
-  return { clearUserCart, isUpdating };
+  return { clearUserCart, isClearing };
 }

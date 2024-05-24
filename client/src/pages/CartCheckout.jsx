@@ -40,7 +40,7 @@ function CartCheckout() {
   }
 
   let totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
-  const { clearUserCart, isUpdating } = useClearCart();
+  const { clearUserCart, isClearing } = useClearCart();
 
   function handleClearCart() {
     // clear all items from cart

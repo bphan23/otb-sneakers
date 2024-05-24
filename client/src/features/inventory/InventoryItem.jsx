@@ -84,11 +84,13 @@ const AddedItemButton = styled.button`
 `;
 
 function InventoryItem({ item }) {
-  const { id, name, size, price, image } = item;
+  const { id, name, size, price, image, isSold } = item;
+
   const { user } = useUser();
   const { cart } = user.user_metadata;
 
   const { updateUserCart, isUpdating } = useUpdateCart();
+
   // check to see if item is currently added into cart
   let currentlyInCart = false;
   for (let i = 0; i < cart.length; i++) {
@@ -99,6 +101,8 @@ function InventoryItem({ item }) {
 
   const [inUserCart, setInCart] = useState(currentlyInCart);
   const [currentCart, setCart] = useState(cart);
+
+  if (isSold) return;
 
   // add to user metadata cart -> have data persist
   function handleAddToCart() {
@@ -123,19 +127,25 @@ function InventoryItem({ item }) {
   }
 
   return (
-    <StyledInventoryItem>
-      <ItemName>{name}</ItemName>
-      <Img src={image} alt={name} />
-      <Price>{formatCurrency(price)}</Price>
-      <Size>Size {size}</Size>
-      {inUserCart !== true ? (
-        <AddItemButton onClick={handleAddToCart} disabled={isUpdating}>
-          Add
-        </AddItemButton>
+    <>
+      {isSold !== true ? (
+        <StyledInventoryItem>
+          <ItemName>{name}</ItemName>
+          <Img src={image} alt={name} />
+          <Price>{formatCurrency(price)}</Price>
+          <Size>Size {size}</Size>
+          {inUserCart !== true ? (
+            <AddItemButton onClick={handleAddToCart} disabled={isUpdating}>
+              Add
+            </AddItemButton>
+          ) : (
+            <AddedItemButton disabled={inUserCart}>Added</AddedItemButton>
+          )}
+        </StyledInventoryItem>
       ) : (
-        <AddedItemButton disabled={inUserCart}>Added</AddedItemButton>
+        ""
       )}
-    </StyledInventoryItem>
+    </>
   );
 }
 

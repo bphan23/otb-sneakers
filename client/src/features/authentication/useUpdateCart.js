@@ -8,8 +8,9 @@ export function useUpdateCart() {
   const { mutate: updateUserCart, isLoading: isUpdating } = useMutation({
     mutationFn: updateCart,
     onSuccess: ({ user }) => {
-      // FIX: want to display only one at a time, if I added multiple items shows multiple times
-      // toast.success("Item successfully added to cart");
+      toast.success("Item successfully added to cart", {
+        id: "added",
+      });
       queryClient.setQueryData(["user"], user);
     },
     onError: (err) => toast.error(err.message),

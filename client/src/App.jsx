@@ -65,7 +65,7 @@ function App() {
         containerStyle={{ margin: "8px" }}
         toastOptions={{
           success: {
-            duration: 3000,
+            duration: 1000,
           },
           error: {
             duation: 5000,
@@ -74,8 +74,8 @@ function App() {
             fontSize: "1.8rem",
             maxWidth: "50rem",
             padding: "1.6rem 2.4rem",
-            backgroundColor: "",
-            color: "",
+            backgroundColor: "var(--color-grey-0)",
+            color: "var(--color-grey-700)",
           },
         }}
       />
