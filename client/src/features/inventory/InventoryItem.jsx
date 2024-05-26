@@ -102,6 +102,7 @@ function InventoryItem({ item }) {
   const [inUserCart, setInCart] = useState(currentlyInCart);
   const [currentCart, setCart] = useState(cart);
 
+  // if item is marked as sold return -> don't create card for item
   if (isSold) return;
 
   // add to user metadata cart -> have data persist
@@ -113,6 +114,7 @@ function InventoryItem({ item }) {
       price,
       image,
       inCart: true,
+      isSold,
     };
 
     // update state
@@ -127,25 +129,19 @@ function InventoryItem({ item }) {
   }
 
   return (
-    <>
-      {isSold !== true ? (
-        <StyledInventoryItem>
-          <ItemName>{name}</ItemName>
-          <Img src={image} alt={name} />
-          <Price>{formatCurrency(price)}</Price>
-          <Size>Size {size}</Size>
-          {inUserCart !== true ? (
-            <AddItemButton onClick={handleAddToCart} disabled={isUpdating}>
-              Add
-            </AddItemButton>
-          ) : (
-            <AddedItemButton disabled={inUserCart}>Added</AddedItemButton>
-          )}
-        </StyledInventoryItem>
+    <StyledInventoryItem>
+      <ItemName>{name}</ItemName>
+      <Img src={image} alt={name} />
+      <Price>{formatCurrency(price)}</Price>
+      <Size>Size {size}</Size>
+      {inUserCart !== true ? (
+        <AddItemButton onClick={handleAddToCart} disabled={isUpdating}>
+          Add
+        </AddItemButton>
       ) : (
-        ""
+        <AddedItemButton disabled={inUserCart}>Added</AddedItemButton>
       )}
-    </>
+    </StyledInventoryItem>
   );
 }
 

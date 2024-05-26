@@ -14,14 +14,13 @@ export async function getInventory() {
 }
 
 // update inventory data -> mark item as isSold
-export async function updateInventory({ id }) {
+export async function updateInventory(id) {
+  console.log(id);
   // update single item
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from("inventory")
     .update({ isSold: true })
-    .eq("id", id)
-    .select()
-    .single();
+    .eq("id", id);
 
   if (error) {
     console.error(error);

@@ -40,12 +40,13 @@ function Success() {
   const { updateInventoryData, isUpdating } = useUpdateInventory();
   const { clearUserCart, isClearing } = useClearCart();
 
-  console.log(purchasedItems);
-  // mark all items in cart as sold
-  for (let i = 0; i < purchasedItems.length; i++) {
-    console.log(purchasedItems[i].id);
-    // updateInventoryData(purchasedItems[i].id);
-  }
+  useEffect(() => {
+    // mark all items in cart as sold
+    for (let i = 0; i < purchasedItems.length; i++) {
+      console.log(purchasedItems[i].id);
+      updateInventoryData(purchasedItems[i].id);
+    }
+  }, [purchasedItems, updateInventoryData]);
 
   cart = [];
   useEffect(() => {

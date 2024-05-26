@@ -1,16 +1,22 @@
 # Out The Box Sneakers
 
+## Code setup
+
+- Download code repository
+
 ## To run server:
 
 - Open new terminal
-- cd into server folder
-- use this command in terminal "npm run devStart"
+- cd into server folder using this command "cd server/"
+- use this command in terminal "npm install" --> downloads all packages and dependencies web application needs to work
+- next use this command in terminal "npm run devStart"
 
 ## To run client:
 
 - Open another new terminal
-- cd into client folder
-- use this command in terminal "npm run dev"
+- cd into client folder using this command "cd client/"
+- use this command in terminal "npm install" --> downloads all packages and dependencies web application needs to work
+- next use this command in terminal "npm run dev"
 
 ## How to use application
 

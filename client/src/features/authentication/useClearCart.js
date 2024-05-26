@@ -8,9 +8,9 @@ export function useClearCart() {
   const { mutate: clearUserCart, isLoading: isClearing } = useMutation({
     mutationFn: updateCart,
     onSuccess: ({ user }) => {
-      toast.success("All items successfully cleared from cart", {
-        id: "cleared",
-      });
+      // toast.success("All items successfully cleared from cart", {
+      //   id: "cleared",
+      // });
       queryClient.setQueryData(["user"], user);
     },
     onError: (err) => toast.error(err.message),

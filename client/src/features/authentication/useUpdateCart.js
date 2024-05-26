@@ -8,9 +8,9 @@ export function useUpdateCart() {
   const { mutate: updateUserCart, isLoading: isUpdating } = useMutation({
     mutationFn: updateCart,
     onSuccess: ({ user }) => {
-      toast.success("Item successfully added to cart", {
-        id: "added",
-      });
+      // toast.success("Item successfully added to cart", {
+      //   id: "added",
+      // });
       queryClient.setQueryData(["user"], user);
     },
     onError: (err) => toast.error(err.message),

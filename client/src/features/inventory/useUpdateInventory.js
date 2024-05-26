@@ -6,9 +6,11 @@ export function useUpdateInventory() {
   const queryClient = useQueryClient();
 
   const { mutate: updateInventoryData, isLoading: isUpdating } = useMutation({
-    mutationFn: ({ id }) => updateInventory(id),
+    mutationFn: (id) => updateInventory(id),
     onSuccess: () => {
-      toast.success("Inventory successfully updated");
+      // toast.success("Inventory successfully updated", {
+      //   id: "soldItems",
+      // });
       queryClient.invalidateQueries({ queryKey: ["inventory"] });
     },
     onError: (err) => toast.error(err.message),
