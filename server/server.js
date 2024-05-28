@@ -9,7 +9,7 @@ const cors = require("cors");
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.LOCAL_CLIENT_URL,
+    origin: process.env.LIVE_CLIENT_URL,
   })
 );
 
