@@ -2,7 +2,7 @@
 
 ## Live link
 
-otb-sneakers.vercel.app
+https://otb-sneakers.vercel.app
 
 ## How to use application
 
