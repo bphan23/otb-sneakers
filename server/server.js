@@ -7,6 +7,12 @@ const app = express();
 const cors = require("cors");
 
 app.use(express.json());
+
+/*
+IMPORTANT:
+  - for local development - use process.env.LOCAL_CLIENT_URL
+  - for live deployment - use process.env.LIVE_CLIENT_URL
+*/
 app.use(
   cors({
     origin: process.env.LIVE_CLIENT_URL,
@@ -41,6 +47,4 @@ app.post("/create-checkout-session", async (req, res) => {
   }
 });
 
-// live server url or local server port 3000
-// const PORT = process.env.LIVE_SERVER_URL || 3000;
 app.listen(3000);
