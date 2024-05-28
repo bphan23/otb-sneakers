@@ -77,7 +77,7 @@ const CreateAccountLink = styled.a`
 function LoginAccountForm() {
   // state
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("password1");
+  const [password, setPassword] = useState("");
 
   const { login, isLoading } = useLogin();
 
