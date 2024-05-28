@@ -8,7 +8,9 @@ const cors = require("cors");
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    // for local host development
+    // origin: "http://localhost:5173",
+    origin: "https://otb-sneakers.vercel.app",
   })
 );
 
