@@ -11,11 +11,7 @@ const cors = require("cors");
 // app.use(express.static(path.join(__dirname, "/../client")));
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://otb-sneakers.vercel.app",
-  })
-);
+app.use(cors());
 
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 
