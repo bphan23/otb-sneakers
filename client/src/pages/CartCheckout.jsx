@@ -50,9 +50,12 @@ function CartCheckout() {
     });
   }
 
+  let liveServer = "https://otb-sneakers-server.vercel.app";
+  // let localSever = "http://localhost:3000";
+
   // Go to stripe -> Calculate correct total price and all items when checking out from stripe
   const handleCheckout = () => {
-    fetch("http://localhost:3000/create-checkout-session", {
+    fetch(`${liveServer}/create-checkout-session`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
