@@ -5,12 +5,15 @@ const express = require("express");
 const app = express();
 // Need when utilizing two different urls - one for client - one for server
 const cors = require("cors");
+
+// all client side code living here
+// const path = require("path");
+// app.use(express.static(path.join(__dirname, "/../client")));
+
 app.use(express.json());
 app.use(
   cors({
-    // for local host development
-    // origin: "http://localhost:5173",
-    origin: "https://otb-sneakers.vercel.app",
+    origin: "http://localhost:5173",
   })
 );
 
@@ -42,4 +45,5 @@ app.post("/create-checkout-session", async (req, res) => {
   }
 });
 
+// const PORT = process.env.PORT || 3000;
 app.listen(3000);

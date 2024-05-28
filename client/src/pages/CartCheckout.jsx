@@ -52,9 +52,7 @@ function CartCheckout() {
 
   // Go to stripe -> Calculate correct total price and all items when checking out from stripe
   const handleCheckout = () => {
-    // for localhost development
-    // fetch("http://localhost:3000/create-checkout-session", {
-    fetch("https://otb-sneakers.vercel.app/create-checkout-session", {
+    fetch("http://localhost:3000/create-checkout-session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
