@@ -52,7 +52,7 @@ function App() {
             {/* <Route path="orders" element={<Orders />} /> */}
           </Route>
 
-          <Route index element={<Navigate replace to="home" />} />
+          <Route index element={<Navigate replace to="dashboard" />} />
           <Route path="home" element={<PreHomePage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="create-account" element={<CreateAccountPage />} />
