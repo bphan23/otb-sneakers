@@ -32,8 +32,8 @@ app.post("/create-checkout-session", async (req, res) => {
           quantity: 1,
         };
       }),
-      success_url: `${process.env.LOCAL_CLIENT_URL}/checkout-success`,
-      cancel_url: `${process.env.LOCAL_CLIENT_URL}/checkout`,
+      success_url: `${process.env.LIVE_CLIENT_URL}/checkout-success`,
+      cancel_url: `${process.env.LIVE_CLIENT_URL}/checkout`,
     });
     res.json({ url: session.url });
   } catch (error) {
