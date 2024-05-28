@@ -13,7 +13,7 @@ const cors = require("cors");
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://otb-sneakers.vercel.app",
   })
 );
 
@@ -36,8 +36,8 @@ app.post("/create-checkout-session", async (req, res) => {
           quantity: 1,
         };
       }),
-      success_url: `${process.env.CLIENT_URL}/checkout-success`,
-      cancel_url: `${process.env.CLIENT_URL}/checkout`,
+      success_url: `${process.env.LIVE_URL}/checkout-success`,
+      cancel_url: `${process.env.LIVE_URL}/checkout`,
     });
     res.json({ url: session.url });
   } catch (error) {
