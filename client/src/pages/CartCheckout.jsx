@@ -50,11 +50,12 @@ function CartCheckout() {
     });
   }
 
-  let localSever = "http://localhost:3000";
+  // let localServer = "http://localhost:3000";
+  let liveServer = "https://otb-sneakers.onrender.com";
 
   // Go to stripe -> Calculate correct total price and all items when checking out from stripe
   const handleCheckout = () => {
-    fetch(`${localSever}/create-checkout-session`, {
+    fetch(`${liveServer}/create-checkout-session`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
