@@ -1,14 +1,21 @@
-/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 
 const HomeHeader = styled.h1`
   font-size: 3rem;
   font-weight: 600;
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
 `;
 
 const HomeSubHeader = styled.h3`
   color: var(--color-brand-600);
   font-size: 2.4rem;
+
+  @media (max-width: 480px) {
+    font-size: 1.6rem;
+  }
 `;
 
 const ContextDiv = styled.div`
@@ -22,11 +29,21 @@ const ContextDiv = styled.div`
 
 const MissionText = styled.p`
   padding: 2rem;
+  font-size: 1.6rem;
+
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
 `;
 
 const PolicyOrderedList = styled.ul`
   padding: 1.5rem;
   list-style-type: square;
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
 `;
 
 const HyperLink = styled.a`
@@ -39,6 +56,11 @@ const HyperLink = styled.a`
 
 const PolicyListItem = styled.li`
   margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+  }
 `;
 
 function Dashboard() {
@@ -100,7 +122,11 @@ function Dashboard() {
             transactions and adhere to industry-standard security protocols to
             safeguard customer payment information. All purchases will be
             through{" "}
-            <HyperLink href="https://stripe.com/" target="_blank">
+            <HyperLink
+              href="https://stripe.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Stripe
             </HyperLink>{" "}
             to protect sensitive data and prevent unauthorized access.
