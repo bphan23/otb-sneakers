@@ -2,10 +2,12 @@
 
 ## Live link
 
-https://otb-sneakers.vercel.app
+https://otb-sneakers.vercel.app/home
 
 ## How to use application
 
-- To utilize the application, you first are prompted to create a new account or login to an existing account. From there, you can add sneakers into your cart, update your user data (name, avatar image), and then you can checkout utilizing Stripe. Currently Stripe is in test mode!
+- To get started, create a new account or log in to an existing one. Once logged in, you can add sneakers to your cart, update your user profile (including your name and avatar image), and proceed to checkout using Stripe. (Note: Stripe is currently in test mode.)
 
-- This web application was built with React Query and Supabase
+- A test account is already provided on the login page for your convenience — simply log in and start exploring the app.
+
+- This web application is built using JavaScript, React, and Tailwind CSS, and Supabase.
