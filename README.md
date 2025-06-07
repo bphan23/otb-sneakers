@@ -11,3 +11,6 @@ https://otb-sneakers.vercel.app/home
 - A test account is already provided on the login page for your convenience — simply log in and start exploring the app.
 
 - This web application is built using JavaScript, React, and Tailwind CSS, and Supabase.
+
+- Note: If the website is down due to inactivity, Supabase may shut down the database, causing login errors. If that happens, you can watch a video demonstration of the app’s functionality here:
+  https://www.loom.com/share/362b817386a349d8afc3b938729da2de
