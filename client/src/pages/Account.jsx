@@ -9,7 +9,7 @@ const AccountHeader = styled.h1`
 function Account() {
   return (
     <>
-      <AccountHeader>Update Account Information</AccountHeader>
+      <AccountHeader>Account Form</AccountHeader>
       <UpdateUserForm />
     </>
   );

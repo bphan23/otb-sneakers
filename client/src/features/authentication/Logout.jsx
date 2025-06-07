@@ -21,6 +21,15 @@ const StyledButton = styled.button`
     height: 2.2rem;
     color: var(--color-brand-600);
   }
+
+  @media (max-width: 680px) {
+    padding: 0.3rem;
+
+    & svg {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+  }
 `;
 
 function Logout() {

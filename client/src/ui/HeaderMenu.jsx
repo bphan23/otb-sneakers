@@ -55,34 +55,10 @@ const StyledButton = styled.button`
   }
 `;
 
-// const CartBadge = styled.span`
-//   position: absolute;
-//   top: -4px;
-//   right: -4px;
-//   background-color: var(--color-red-500);
-//   color: white;
-//   font-size: 1rem;
-//   font-weight: 600;
-//   border-radius: 50%;
-//   width: 1.6rem;
-//   height: 1.6rem;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-
-//   @media (max-width: 680px) {
-//     font-size: 0.9rem;
-//     width: 1.4rem;
-//     height: 1.4rem;
-//   }
-// `;
-
 function HeaderMenu() {
   const navigate = useNavigate();
   const { user } = useUser();
   const { cart } = user.user_metadata;
-  // Safely extract cart from user metadata; default to empty array
-  // const { cart = [] } = user?.user_metadata || {};
 
   return (
     <StyledHeaderMenu>
@@ -92,11 +68,6 @@ function HeaderMenu() {
         </StyledButton>
       </li>
       <li>
-        {/* <StyledButton onClick={() => navigate("/checkout")} aria-label="Cart">
-          <FaShoppingCart />
-          {cart.length > 0 && <CartBadge>{cart.length}</CartBadge>}
-        </StyledButton> */}
-
         <StyledButton onClick={() => navigate("/checkout")}>
           <FaShoppingCart />
           {cart.length !== 0 ? `(${cart.length})` : ""}
