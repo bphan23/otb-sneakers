@@ -8,12 +8,20 @@ const HomePageLayout = styled.main`
   justify-content: center;
   gap: 2.5rem;
   background-color: var(--color-grey-50);
+
+  @media (max-width: 680px) {
+    grid-template-columns: 80vw; /* make layout fluid on small screens */
+  }
 `;
 
 const Header = styled.h1`
   text-align: center;
   font-size: 3rem;
   font-weight: 600;
+
+  @media (max-width: 680px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const Text = styled.p`
@@ -28,6 +36,10 @@ const LoginCreateDiv = styled.div`
   padding: 2rem;
   font-size: 1.6rem;
   background-color: white;
+
+  @media (max-width: 680px) {
+    font-size: 1.4rem;
+  }
 `;
 
 const Link = styled.a`
